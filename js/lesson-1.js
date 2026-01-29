@@ -207,14 +207,51 @@ console.log(`Меньше число:`, resultMin);
 
 
 // Завдання 9:
-// Напишіть функцію isAdult(age), яка  приймає число - вік користувача і повертає true, 
+// Напишіть функцію isAdult(age), яка  приймає число - вік користувача 
+// і повертає true,
 // якщо параметр age більше чи дорівнює 18.
-// В іншому випадку вона запитує підтвердження через confirm 
+// В іншому випадку вона запитує підтвердження через confirm
 // і повертає його результат (true/false).
+function isAdult(age) {
+  const userAge = Number(age); //➡️ перетворюємо вік у число (працює і з '18')
+
+  //➡️ якщо вік достатній — нічого не питаємо
+  if (userAge >= 18) {
+    return true;
+  } else {
+    //➡️відкривається віконце confirm OK → true Cancel → false 
+    // результат одразу повертається з функції
+    return confirm(`Чи Ви маєте 18 років?`);    
+  }
+}
+// console.log(isAdult(20)); 
+// // true (confirm не зʼявиться)
+// console.log(isAdult(16)); 
+// // зʼявиться confirm → true або false
+// console.log(isAdult('18')); 
+// // true
 
 // Завдання 10:
-
-// Напишіть функцію fizzBuzz(num), яка приймає число і перевіряє кожне число від 1 до num:
+// Напишіть функцію fizzBuzz(num), яка приймає число
+// і перевіряє кожне число від 1 до num:
 // Якщо число ділитися  без остачі на 3 - виводить в консоль 'fizz',
 // якщо ділиться  без остачі на 5 - виводить в консоль 'buzz',
 // якщо ділиться  без остачі і на 3, і на 5 - виводить в консоль 'fizzbuzz'.
+function fizzBuzz(num) {
+  const endNumb = Number(num); //перетворюємо у число
+  let startNumb = 1; // встановлюємо початкове число відліку
+  
+  for (let i = 1; i <= endNumb; i++) {    
+
+    if (i % 3 === 0 && i % 5 === 0) {
+      console.log('fizzbuzz');
+    } else if (i % 3 === 0) {
+      console.log('fizz');
+    } else if (i % 5 === 0) {
+      console.log('buzz')
+    } else {
+      console.log(i);
+    }
+  }
+}
+fizzBuzz(15);
