@@ -8,7 +8,7 @@
 // Підказка: prompt завжди повертає рядок (String), тому перед перевіркою
 // перетворіть значення на число за допомогою Number().
 
-// const number = prompt("Введіть число")
+// const number = Number(prompt("Введіть число"))
 // console.log('number: ', number);
 
 // if (number === 10) {
