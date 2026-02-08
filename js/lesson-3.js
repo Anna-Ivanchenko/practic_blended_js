@@ -4,30 +4,38 @@
 // Очікуваний результат: [1, 4, 9, 16, 25].
 
 const numbers = [1, 2, 3, 4, 5]
-let total = [];
+// !Варіант 1
+// let total = [];
 
-numbers.forEach(function (number) {
-    total.push(number ** 2);
-});
-console.log(total);
-
+// numbers.forEach(function (number) {
+//     total.push(number ** 2);
+// });
+// console.log(total);
+// !Варіант 2
+const newNumber = numbers.map(number => number ** 2);
+console.log(newNumber);
+// !-------------------------------------------------------
 //Завдання 2:
 // Дано масив об'єктів. Створіть новий масив, що містить всі значення 
 // з масивів values кожного об'єкту, збережених в одному масиві. 
 // Очікуваний результат: [1, 2, 3, 4, 5, 6, 7, 8, 9].
-
+// !Варіант 1
 const data = [
  { id: 1, values: [1, 2, 3] },
  { id: 2, values: [4, 5, 6] },
  { id: 3, values: [7, 8, 9] },
 ];
-const addTotal = [];
+// const addTotal = [];
 
-data.forEach(item => {      
-    addTotal.push(...item.values);
-})
-console.log(addTotal);
+// data.forEach(item => {
+//     addTotal.push(...item.values);
+// })
+// console.log(addTotal);
+// !Варіант 2
+const arr = data.flatMap(el => el.values);
+console.log(arr);
 
+// !----------------------------------------
 //Завдання 3:
 // Дано масив об'єктів. 
 // Перевірте, чи є хоча б один об'єкт з віком менше 20 років. 
@@ -83,11 +91,10 @@ console.log(newArray);
 // ["Äpfel", "Banane", "apple"].toSorted();
 // Тоді краще:
 // array.toSorted((a, b) => a.localeCompare(b));
-// Але для цього завдання — 100% ок 👍
 // !WWWWWWWWWWWWWWWWWWWWWWWWWWW
 
 const stringArray = ['banana', 'orange', 'apple', 'pear'];
-const newStringArray = stringArray.toSorted();
+const newStringArray = stringArray.toSorted((a, b) => a.localeCompare(b));
 console.log(newStringArray);
 
 //Завдання 8:
@@ -153,47 +160,80 @@ console.log(totalNumbersC);
  // - метод multiply -Множить поточне значення на value. Повертає this.
  
  // Об'єкт класу може проводити послідовні операції у вигляді ланцюжка
- 
+//  !ВАРІАНТ 1------------------------------
+// class Calculator {
+//     constructor() {
+//         this.value = 0;
+//     }
+
+//     number(value) {
+//         this.value = value;
+//         return this; // 🔗 chaining
+//     }
+
+//     add(value) {
+//         this.value += value;
+//         return this;
+//     }
+
+//     subtract(value) {
+//         this.value -= value;
+//         return this;
+//     }
+
+//     multiply(value) {
+//         this.value *= value;
+//         return this;
+//     }
+
+//     divide(value) {
+//         if (value === 0) {
+//             throw new Error('Ділення на 0 неможливе');
+//         }
+//         this.value /= value;
+//         return this;
+//     }
+
+//     getResult() {
+//         return this.value;
+//     }
+// } 
+// // Приклад використання:
+// const calc = new Calculator();
+// !ВАРІАНТ 2-----------------------
 class Calculator {
-    constructor() {
-        this.value = 0;
-    }
+  #number = 0;
 
-    number(value) {
-        this.value = value;
-        return this; // 🔗 chaining
-    }
+  number(value){
+    this.#number = value;
+    return this;
+  }
 
-    add(value) {
-        this.value += value;
-        return this;
-    }
+  add(value) {
+    this.#number += value;
+    return this;
+  }
 
-    subtract(value) {
-        this.value -= value;
-        return this;
-    }
+  subtract(value) {
+    this.#number -= value;
+    return this;
+  }
 
-    multiply(value) {
-        this.value *= value;
-        return this;
-    }
+  multiply(value) {
+    this.#number *= value;
+    return this;
+  }
 
-    divide(value) {
-        if (value === 0) {
-            throw new Error('Ділення на 0 неможливе');
-        }
-        this.value /= value;
-        return this;
-    }
+  divide(value) {
+    this.#number /= value;
+    return this;
+  }
 
-    getResult() {
-        return this.value;
-    }
-} 
-// Приклад використання:
+  getResult(value) {
+    return this.#number;
+  }
+}
 const calc = new Calculator();
-
 
 const result = calc
   .number(10)   // Встановлюємо початкове значення 10
